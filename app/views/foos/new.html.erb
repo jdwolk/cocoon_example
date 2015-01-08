@@ -1,0 +1,22 @@
+<h1>New Foo!</h1>
+
+<%= form_for [@foo] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br><br>
+
+  <%= f.label :age %>
+  <%= f.number_field :age %>
+  <br><br>
+
+  <h3>Bars</h3>
+  <%= f.fields_for :bar do |bar| %>
+    <%= render partial: 'foos/bar_fields', locals: { f: bar } %>
+    <div>
+      <%= link_to_add_association 'Add Color +', f, :bars, partial: 'foos/bar_fields' %>
+    </div>
+  <% end %>
+
+  <br><br>
+  <%= f.submit 'Create Foo with Bars' %>
+<% end %>
